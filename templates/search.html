@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Bookworm - Search Results{% endblock %}
+
+{% block content %}
+<h1>Search Results for "{{ query }}"</h1>
+<div class="search-results">
+    {% for book in results %}
+    <div class="book-card">
+        <img src="{{ book.thumbnail }}" alt="{{ book.title }} cover">
+        <h2>{{ book.title }}</h2>
+        <p class="author">by {{ book.author }}</p>
+        <p class="description">{{ book.description }}</p>
+        <p class="price">${{ "%.2f"|format(book.price) }}</p>
+        <a href="{{ url_for('purchase', book_id=book.id) }}" class="purchase-btn">Purchase</a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
